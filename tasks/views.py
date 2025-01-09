@@ -42,4 +42,7 @@ def update(request, id):
         return render(request, 'tasks/detail.html', {'task':task})
 
 def delete(request, id):
-    pass
+
+    task = get_object_or_404(Task,pk=id)
+    task.delete()
+    return redirect('index')
