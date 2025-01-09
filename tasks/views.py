@@ -21,9 +21,9 @@ def index(request):
 
 def detail(request, id):
     try:
-        task = Task.objects.get(pk=id)
+        task = get_object_or_404(Task,pk=id)
     except:
-        return redirect("index", {'error_message':'task not found'})
+        return redirect("index")
     return render(request, 'tasks/detail.html', {'task':task})
 
 def update(request, id):
