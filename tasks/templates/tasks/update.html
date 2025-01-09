@@ -1,0 +1,7 @@
+<form action="{% url 'update' task.task_id %}" method="post">
+    {% csrf_token %}
+    <legend><h1>{{ question.question_text }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <input type="text" name="name_task" id="{{ task.name_task }}" value="{{ task.name_task }}">
+    <input type="submit" value="update">
+</form>
