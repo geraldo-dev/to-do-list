@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 
 {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
@@ -17,4 +19,5 @@
         <input type="text" name="name_task" id="name_task" value="">
         <input type="submit" value="inserir">
     </form>
-
+    
+{% endblock %}
