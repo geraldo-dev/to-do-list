@@ -1,23 +1,30 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.shortcuts import redirect, render, get_object_or_404
+from django.utils import timezone
 from .models import Task
 
 
 def index(request):
-
     all_tasks = Task.objects.all()
-    data = {
-        "all_tasks": all_tasks
-    }
-    return render(request, 'tasks/index.html', data)
+    data = { "all_tasks": all_tasks}
+
+    if request.method == 'GET':
+
+        return render(request, 'tasks/index.html', data)
+    
+    elif request.method == 'POST':
+
+        task = Task()
+        task.name_task = request.POST.get('name_task')
+        task.created_date = timezone.now()
+        task.save()
+        return redirect('index')
 
 def detail(request, id):
-    # try:
-    task = get_object_or_404(Task,pk=id)
+    try:
+        task = Task.objects.get(pk=id)
+    except:
+        return redirect("index", {'error_message':'task not found'})
     return render(request, 'tasks/detail.html', {'task':task})
-
-def created(request, id):
-    pass
 
 def update(request, id):
 

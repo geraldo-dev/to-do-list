@@ -1,4 +1,5 @@
 
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 {% if all_tasks %}
     <ul>
     {% for task in all_tasks %}
@@ -8,4 +9,9 @@
 {% else %}
     <p>Não há tarefas ainda.</p>
 {% endif %}
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="name_task" id="name_task" value="">
+        <input type="submit" value="update">
+    </form>
 
