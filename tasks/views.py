@@ -1,5 +1,7 @@
+
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
+from django.contrib import messages
 from .models import Task
 
 
@@ -13,10 +15,16 @@ def index(request):
     
     elif request.method == 'POST':
 
+        name = request.POST.get('name_task')
+
         task = Task()
-        task.name_task = request.POST.get('name_task')
-        task.created_date = timezone.now()
-        task.save()
+
+        if not name.strip():
+            return redirect('index')
+        else:
+            task.name_task = name
+            task.created_date = timezone.now()
+            task.save()
         return redirect('index')
 
 def detail(request, id):
@@ -34,11 +42,16 @@ def update(request, id):
         return render(request, 'tasks/update.html', {'task':task})
     
     elif request.method == 'POST':
+        
+        name = request.POST.get('name_task')
 
         task = Task.objects.get(pk=id)
-        print(task.name_task)
-        task.name_task = request.POST.get('name_task')
-        task.save()
+        
+        if not name.strip():
+            return render(request, 'tasks/update.html', {'task':task})
+        else:
+            task.name_task = name
+            task.save()
         return render(request, 'tasks/detail.html', {'task':task})
 
 def delete(request, id):

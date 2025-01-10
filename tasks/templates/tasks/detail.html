@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-{% if error_message %}
-    {{ error_message }}
-{% else %}
 <h1>{{ task.name_task }}</h1>
 <p>{{ task.created_date }}</p>
 <button><a href="{% url 'update' task.task_id %}">atualizar</a></button>
 <button><a href="{% url 'delete' task.task_id %}">deletar</a></button>
-{% endif %}
 
 {% endblock %}

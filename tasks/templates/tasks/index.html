@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
+{% if messages %}
+    {% for messsage in messages %}
+        {{ message }}
+    {% endfor %}
 {% endif %}
 
 {% if all_tasks %}
