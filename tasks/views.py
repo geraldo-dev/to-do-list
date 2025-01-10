@@ -1,8 +1,7 @@
 
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
-# from django.contrib import messages
-from .forms import TaskCreateinForm
+from .forms import TaskCreateinForm, TaskUpdateForm
 from .models import Task
 
 
@@ -30,7 +29,7 @@ def detail(request, id):
     try:
         task = get_object_or_404(Task,pk=id)
     except:
-        return redirect("not_found")
+        return redirect("index")
     return render(request, 'tasks/detail.html', {'task':task})
 
 def update(request, id):
@@ -38,17 +37,17 @@ def update(request, id):
     task = get_object_or_404(Task,pk=id)
 
     if request.method == 'GET':
-        form = TaskCreateinForm(instance=task)
+        form = TaskUpdateForm(instance=task)
         return render(request, 'tasks/update.html', {'form': form, 'task':task})
     
     elif request.method == 'POST':
         
-        form = TaskCreateinForm(request.POST, instance=task)
+        form = TaskUpdateForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
             return redirect('detail',  id=task.task_id)
     else:
-        form = TaskCreateinForm(instance=task)
+        form = TaskUpdateForm(instance=task)
     return render(request, 'tasks/update.html', {'form': form})
 
 def delete(request, id):

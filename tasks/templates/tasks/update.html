@@ -5,7 +5,7 @@
 <form action="{% url 'update' task.task_id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="update">
+    <button class="btn btn-primary" type="submit" value="update" >update</button>
 </form>
 
 {% endblock %}
