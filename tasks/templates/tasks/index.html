@@ -25,15 +25,20 @@
                 <a href="{% url 'detail' task.task_id  %}" class="list-group-item list-group-item-action">
                     {{ task.name_task }}
                 </a>
-                <button>
-                    <a href="{% url 'activer' task.task_id  %}" >
-                        click
-                    </a>
-                </button>
+                
                 {% if task.is_activer == True %}
-                <p class="list-group-item bg-danger" >tarefa não concluida</p>
+                <p class="list-group-item bg-danger" >
+    
+                    <a class="text-white" href="{% url 'activer' task.task_id  %}" >
+                        tarefa não concluida
+                    </a>
+                </p>
                 {% else %}
-                <p class="list-group-item bg-success" >concluida</p>
+                <p class="list-group-item bg-success" >
+                    <a class="text-white" href="{% url 'activer' task.task_id  %}" >
+                        concluida
+                    </a>
+                </p>
                 {% endif %}
                 {% endfor %}
             </div>
