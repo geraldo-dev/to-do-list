@@ -9,20 +9,33 @@
 
 {% if all_tasks %}
 
+<form class="row g-3 " action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <div class="col-auto mg-3">
+        {{ form.as_p }}
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-success btn-lg" type="submit" value="inserir" >inserir</button>
+    </div>
+</form>
     <div class="list-group">
         {% for task in all_tasks %}
-        <a href="{% url 'detail' task.task_id  %}" class="list-group-item list-group-item-action">
-            {{ task.name_task }}
-        </a>
-        {% endfor %}
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'detail' task.task_id  %}" class="list-group-item list-group-item-action">
+                    {{ task.name_task }}
+                </a>
+                {% if task.is_activer == True %}
+                <p class="list-group-item bg-danger" >tarefa não concluida</p>
+                {% else %}
+                <p class="list-group-item bg-success" >concluida</p>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% else %}
     <p>Não há tarefas ainda.</p>
 {% endif %}
-    <form action="{% url 'index' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-success btn-lg" type="submit" value="inserir" >inserir</button>
-    </form>
     
 {% endblock %}

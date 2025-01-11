@@ -4,6 +4,11 @@
 <div class="pb-3 border-bottom border-primary">
     <h1 class="text-info-emphasis">{{ task.name_task }}</h1>
     <p>{{ task.created_date }}</p>
+    {% if task.is_activer == True %}
+    <p>tarefa não concluida</p>
+    {% else %}
+    <p>concluida</p>
+    {% endif %}
     <a  class="btn btn-primary " href="{% url 'update' task.task_id %}">atualizar</a>
     <a class="btn btn-danger " href="{% url 'delete' task.task_id %}">deletar</a>
 </div>

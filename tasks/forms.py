@@ -17,8 +17,9 @@ class TaskCreateinForm(forms.ModelForm):
 class TaskUpdateForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['name_task',]
+        fields = ['name_task','is_activer']
         labels = {'name_task':'atualizar tarefa'}
+        labels = {'is_activer':'concluido'}
     
         widgets = {
             'name_task' : forms.TextInput(attrs={'class':'form-control',

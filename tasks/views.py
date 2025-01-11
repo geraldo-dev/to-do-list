@@ -10,7 +10,7 @@ def index(request):
 
     if request.method == 'GET':
 
-        all_tasks = Task.objects.all().order_by('-created_date')
+        all_tasks = Task.objects.all().order_by('-is_activer','-created_date')
         return render(request, 'tasks/index.html', { "all_tasks": all_tasks, 'form':form})
     
     elif request.method == 'POST':
