@@ -55,3 +55,15 @@ def delete(request, id):
     task = get_object_or_404(Task,pk=id)
     task.delete()
     return redirect('index')
+
+def activer(request, id):
+    task = Task.objects.get(pk=id)
+
+    if request.method == 'GET':
+        print(task.is_activer)
+        if task.is_activer == True:
+            task.is_activer = False
+        else:
+            task.is_activer = True
+        task.save()
+        return redirect('index')

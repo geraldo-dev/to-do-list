@@ -14,23 +14,31 @@
     <div class="col-auto mg-3">
         {{ form.as_p }}
     </div>
-    <div class="col-auto">
-        <button class="btn btn-success btn-lg" type="submit" value="inserir" >inserir</button>
+    <div class="col ">
+        <button class="btn- mt-4 btn btn-success" type="submit" value="inserir" >inserir</button>
     </div>
 </form>
-    <div class="list-group">
+    <div class="list-group list">
         {% for task in all_tasks %}
         <div class="row">
             <div class="col">
                 <a href="{% url 'detail' task.task_id  %}" class="list-group-item list-group-item-action">
                     {{ task.name_task }}
                 </a>
+                <button>
+                    <a href="{% url 'activer' task.task_id  %}" >
+                        click
+                    </a>
+                </button>
                 {% if task.is_activer == True %}
                 <p class="list-group-item bg-danger" >tarefa não concluida</p>
                 {% else %}
                 <p class="list-group-item bg-success" >concluida</p>
                 {% endif %}
                 {% endfor %}
+            </div>
+            <div class="col-auto">
+
             </div>
         </div>
     </div>
