@@ -17,13 +17,22 @@ a{
     margin-top: 10%;
     width: 27%;
     height: 15%px;
-    background-color: aqua;
     color: rgb(214, 214, 214);
 }
 
 .card input, button{
     margin-top: 3%;
 }
+
+.card-register{
+    align-items: center;
+    margin: auto;
+    width: 40%;
+    height: 20%px;
+    border-radius: 5px;
+}
+
+
 
 footer{
     position: fixed;
