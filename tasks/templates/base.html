@@ -15,8 +15,8 @@
   </head>
   <body>
     <div class="container mt-5">
+        {% if user.is_authenticated %}
         <nav class="navbar bg-secondary p-2 ">
-            {% if user.is_authenticated %}
                 <h1><a class="text-white" href="{% url 'index' %}">Home</a></h1>
             <!-- form for logout -->
     

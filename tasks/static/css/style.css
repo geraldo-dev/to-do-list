@@ -11,6 +11,19 @@ a{
     margin-top: 10px;
 }
 
+.card{
+    margin: auto;
+    align-items: center;
+    margin-top: 10%;
+    width: 27%;
+    height: 15%px;
+    background-color: aqua;
+    color: rgb(214, 214, 214);
+}
+
+.card input, button{
+    margin-top: 3%;
+}
 
 footer{
     position: fixed;
