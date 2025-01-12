@@ -2,6 +2,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from .forms import TaskCreateinForm, TaskUpdateForm
+from django.core.paginator import Paginator
 from .models import Task
 
 
@@ -10,7 +11,12 @@ def index(request):
 
     if request.method == 'GET':
 
-        all_tasks = Task.objects.all().order_by('-is_activer','-created_date')
+        list_tasks = Task.objects.all().order_by('-is_activer','-created_date')
+
+        paginator = Paginator(list_tasks, 5)
+        page = request.GET.get('page')
+
+        all_tasks = paginator.get_page(page)
         return render(request, 'tasks/index.html', { "all_tasks": all_tasks, 'form':form})
     
     elif request.method == 'POST':

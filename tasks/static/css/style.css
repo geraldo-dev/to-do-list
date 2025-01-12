@@ -7,9 +7,3 @@ a{
     text-decoration: none;
 }
 
-.list-group {
-  height: 500px;
-  width: 70%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
