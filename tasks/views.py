@@ -4,8 +4,9 @@ from django.utils import timezone
 from .forms import TaskCreateinForm, TaskUpdateForm
 from django.core.paginator import Paginator
 from .models import Task
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def index(request):
     form = TaskCreateinForm()
 
@@ -31,6 +32,7 @@ def index(request):
         else:
             return render(request, 'tasks/index.html', { "all_tasks": all_tasks, 'form':form})
 
+@login_required
 def detail(request, id):
     try:
         task = get_object_or_404(Task,pk=id)
@@ -38,6 +40,7 @@ def detail(request, id):
         return redirect("index")
     return render(request, 'tasks/detail.html', {'task':task})
 
+@login_required
 def update(request, id):
 
     task = get_object_or_404(Task,pk=id)
@@ -56,12 +59,14 @@ def update(request, id):
         form = TaskUpdateForm(instance=task)
     return render(request, 'tasks/update.html', {'form': form})
 
+@login_required
 def delete(request, id):
 
     task = get_object_or_404(Task,pk=id)
     task.delete()
     return redirect('index')
 
+@login_required
 def activer(request, id):
     task = Task.objects.get(pk=id)
 

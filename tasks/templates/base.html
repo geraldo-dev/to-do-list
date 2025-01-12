@@ -11,6 +11,13 @@
 <body>
     <div class="container mt-5">
         <h1><a href="{% url 'index' %}">Home</a></h1>
+        <!-- form for logout -->
+        {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+        </form>
+        {% endif %}
         
         {% block content %}
         {% endblock %}
