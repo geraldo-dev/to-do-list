@@ -46,23 +46,10 @@
 
             </div>
         </div>
-        <div class="row">
-            {% if all_tasks.has_previous %}
-                <li><a href="?page={{ all_tasks.previous_page_number }}">back</a></li>
-            {% endif %}
 
-            {% if all_tasks.paginator.num_pages %}
-            <span>
-                {{ all_tasks.number }} de {{ all_tasks.paginator.num_pages }}
-            </span>
-            {% endif %}
-
-            
-            {% if all_tasks.has_next %}
-                <li><a href="?page={{ all_tasks.next_page_number }}">next</a></li>
-            {% endif %}
-        </div>
+        
     </div>
+
 {% else %}
     <p>Não há tarefas ainda.</p>
 {% endif %}

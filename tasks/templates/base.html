@@ -11,8 +11,39 @@
 <body>
     <div class="container mt-5">
         <h1><a href="{% url 'index' %}">Home</a></h1>
+        
         {% block content %}
         {% endblock %}
+
+        {% if all_tasks %}
+        <footer class="">
+            <!-- paginaitor tasks -->
+            <nav class="nav" aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if all_tasks.has_previous %}
+                        <li class="page-item" ><a class="page-link" href="?page={{ all_tasks.previous_page_number }}">back</a></li>
+        
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">back</a></li>
+                    {% endif %}
+                  {% if all_tasks.paginator.num_pages %}
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                        {{ all_tasks.number }} | {{ all_tasks.paginator.num_pages }}
+                    </a>
+                </li>
+                  {% endif %}
+        
+                  {% if all_tasks.has_next %}
+                      <li class="page-item" ><a class="page-link" href="?page={{ all_tasks.next_page_number }}">next</a></li>
+                      {% else %}
+                      <li class="page-item disabled"><a class="page-link" href="#">next</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+        {% endif %}
+            
+        </footer>
     </div>
 </body>
 </html>
