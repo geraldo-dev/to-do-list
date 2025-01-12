@@ -1,12 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if messages %}
-    {% for messsage in messages %}
-        {{ message }}
-    {% endfor %}
-{% endif %}
-
 {% if all_tasks %}
 
 <form class="row g-3 " action="{% url 'index' %}" method="post">
@@ -43,7 +37,6 @@
                 {% endfor %}
             </div>
             <div class="col-auto">
-
             </div>
         </div>
 
